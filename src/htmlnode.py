@@ -18,6 +18,3 @@ class HTMLNode:
         return f"{self.tag}, {self.value}, {self.children}, {self.props}"
         
 
-if __name__ == "__main__":
-    html_node = HTMLNode(None, None, None, {"href": "https://www.google.com", "target": "_blank"})
-    print(html_node.props_to_html())

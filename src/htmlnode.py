@@ -10,6 +10,8 @@ class HTMLNode:
     
     def props_to_html(self):
         key_value = ""
+        if not self.props:
+            return ""
         for key, value in self.props.items():
             key_value += f' {key}="{value}"'
         return key_value
@@ -42,6 +44,6 @@ class ParentNode(HTMLNode):
         html_content = ""
         for child in self.children:
             html_content += child.to_html()
-        return f"<{self.tag}{html_content}</{self.tag}>"
+        return f"<{self.tag}>{html_content}</{self.tag}>"
         
 

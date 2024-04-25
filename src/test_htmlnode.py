@@ -25,7 +25,15 @@ class TestHTMLNode(unittest.TestCase):
         expected_result = "<p>This is a paragraph of text.</p>"
         self.assertEqual(node.to_html(), expected_result)
 
-    
+    def test_to_html_parent(self):
+        node = ParentNode("p", [LeafNode("b", "Bold text"),
+                                      LeafNode(None, "Normal text"),
+                                      LeafNode("i", "italic text"),
+                                      LeafNode(None, "Normal text")
+                                      ])
+        expected_result = "<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>"
+        self.assertEqual(node.to_html(), expected_result)
+
         
 
 if __name__ == "__main__":

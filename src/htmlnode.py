@@ -1,3 +1,11 @@
+TEXT_TYPE_TEXT = "text"
+TEXT_TYPE_BOLD = "bold"
+TEXT_TYPE_ITALIC = "italic"
+TEXT_TYPE_CODE = "code"
+TEXT_TYPE_LINK = "link"
+TEXT_TYPE_IMAGE = "image"
+
+
 class HTMLNode:
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
@@ -47,3 +55,24 @@ class ParentNode(HTMLNode):
         return f"<{self.tag}>{html_content}</{self.tag}>"
         
 
+def text_node_to_html_node(text_node):
+    node_type = text_node.text_type
+
+    if node_type == TEXT_TYPE_TEXT:
+        return LeafNode(value=text_node.text)
+    elif node_type == TEXT_TYPE_BOLD:
+        return LeafNode(tag="b", value=text_node.text)
+    elif node_type == TEXT_TYPE_ITALIC:
+        return LeafNode(tag="i", value=text_node.text)
+    elif node_type == TEXT_TYPE_CODE:
+        return LeafNode(tag="code", value=text_node.text)
+    elif node_type == TEXT_TYPE_LINK:
+        props = {"href": text_node.url}
+        return LeafNode(tag="a", value=text_node.text, props=props)
+    elif node_type == TEXT_TYPE_IMAGE:
+        props = {"src": text_node.url, "alt": text_node.text}
+        return LeafNode(tag="img", value="", props=props)
+    else:
+        raise Exception("Unsupported text type provided")
+
+               

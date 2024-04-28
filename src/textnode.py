@@ -1,3 +1,6 @@
+from main import TEXT_TYPE_TEXT, TEXT_TYPE_BOLD, TEXT_TYPE_ITALIC
+
+
 class TextNode:
     def __init__(self, text, text_type, url=None):
         self.text = text
@@ -11,4 +14,7 @@ class TextNode:
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
     
 
-
+def split_nodes_delimiter(old_nodes, delimiter, text_type):
+    new_nodes = []
+    
+    
